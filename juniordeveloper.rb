@@ -11,7 +11,3 @@ class JuniorDeveloper < Developer
   end
 
 end
-
-
-
-
