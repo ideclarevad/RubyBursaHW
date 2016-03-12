@@ -1,4 +1,5 @@
 class PetitionsController < ApplicationController
+
   before_action :authorize, only: [:new, :create]
 
   def index
@@ -34,7 +35,8 @@ class PetitionsController < ApplicationController
   def update
     @petition = Petition.find(params[:id])
     if @petition.update(petition_params)
-      redirect_to petition_path(@petition)
+      flash[:success] = 'Петиция обновлена'
+      redirect_to my_petitions_path
     else
       render 'edit'
     end
@@ -43,6 +45,7 @@ class PetitionsController < ApplicationController
   def destroy
     @petition = Petition.find(params[:id])
     @petition.destroy
+    flash[:success] = 'Петиция удалена'
     redirect_to my_petitions_path
   end
 

@@ -20,35 +20,33 @@
           <div class="pull-right" style="margin: 10px">
           <span >
           <% if current_user %>
-            Logged in as <%= current_user.first_name + ' ' + current_user.last_name %>
+            Вы авторизованы как <%= current_user.first_name + ' ' + current_user.last_name %>
                 (<%= link_to "Выйти", logout_path %>)
           <% else %>
             <%= link_to "Зарегистироваться", signup_path %> |
                 <%= link_to "Войти", login_path %>
           <% end %>
+
           </span>
           </div>
         </div>
       </div>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-9">
-          <% flash.each do |name, msg| %>
-              <%= content_tag :div, msg, id: "flash_#{name}" %>
-              </div>
-          <% end %>
-          <%= yield %>
-        </div>
-        <div class="col-lg-3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list la">
-              <li><h4><%= link_to "Все петиции", petitions_path %></h4></li>
-              <li><h4><%= link_to "Создание петиции", petitions_create_path  %></h4></li>
-              <% if current_user %>
-                  <li><h4><%= link_to "Мои петиции", my_petitions_path %></h4></li>
-              <% end %>
-            </ul>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <%= flash_messages %>
+            <%= yield %>
+          </div>
+          <div class="col-lg-3">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list la">
+                <li><h4><%= link_to "Все петиции", petitions_path %></h4></li>
+                <li><h4><%= link_to "Создание петиции", petitions_create_path  %></h4></li>
+                <% if current_user %>
+                    <li><h4><%= link_to "Мои петиции", my_petitions_path %></h4></li>
+                <% end %>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

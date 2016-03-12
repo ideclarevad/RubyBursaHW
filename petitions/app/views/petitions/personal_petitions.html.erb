@@ -3,17 +3,15 @@
   <tr>
     <th>Петиция</th>
     <th>Дата создания</th>
-    <th>Действия</th>
+    <th colspan="2">Действия</th>
   </tr>
 
   <% current_user.petitions.each do |petition| %>
       <tr>
         <td><%= link_to petition.title, petition_path(petition) %></td>
         <td><%= petition.created_at.strftime("%d/%m/%Y %H:%M")%></td>
-        <td><%= link_to 'Изменить', edit_petition_path(petition) %> |
-          <%= link_to 'Удалить', petition_path(petition), method: :delete %>
-
-        </td>
+        <td><%= link_to 'Изменить', edit_petition_path(petition) %> </td>
+        <td> <%= link_to 'Удалить', petition_path(petition), method: :delete %>  </td>
       </tr>
   <% end %>
 </table>
