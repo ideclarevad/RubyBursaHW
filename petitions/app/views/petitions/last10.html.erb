@@ -3,6 +3,7 @@
   <tr>
     <th>Петиция</th>
     <th>Автор</th>
+    <th>Голоса</th>
     <th>Дата создания</th>
   </tr>
 
@@ -10,6 +11,7 @@
       <tr>
         <td><%= link_to petition.title, petition_path(petition) %></td>
         <td><%= petition.author %></td>
+        <td><%= petition.votes.count %></td>
         <td><%= petition.created_at.strftime("%d/%m/%Y %H:%M")%></td>
       </tr>
   <% end %>

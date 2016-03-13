@@ -1,6 +1,7 @@
 class Petition < ActiveRecord::Base
 
   belongs_to :user
+  has_many :votes
       # class_name: "User",
       # foreign_key: :author,
       # primary_key: :id

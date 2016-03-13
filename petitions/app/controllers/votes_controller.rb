@@ -1,25 +1,21 @@
 class VotesController < ApplicationController
 
   def create
-    #@vote = Vote.new(vote_params)
-    @vote = Petition.find(params[:petition_id]).votes.build(vote_params)
-    @votes = Vote.where(petition_id: params[:petition_id])
-
-    if current_user.present?
-
-      if @vote.save
-        redirect_to root_url
+    @petition = Petition.find(params[:petition_id])
+    @vote = @petition.votes.build(vote_params)
+     if @vote.save
+        flash[:success] = 'Вы отдали свой голос'
+        redirect_to :back
       else
-        render "new"
+        flash[:alert] = 'Вы уже поддержали данную петицию'
+        redirect_to :back
       end
-    end
-
   end
 
   private
 
   def vote_params
-    params.require(:vote).permit(:user_id, :petition_id)
+    params.permit(petition_id: @petition.id).merge(user_id: current_user.id)
   end
 
 end
