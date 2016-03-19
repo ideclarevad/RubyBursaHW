@@ -1,5 +1,7 @@
 class VotesController < ApplicationController
 
+  before_action :authorize, only: [:new, :create]
+
   def create
     @petition = Petition.find(params[:petition_id])
     @vote = @petition.votes.build(vote_params)
